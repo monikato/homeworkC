@@ -47,32 +47,25 @@ public:
     }
 
     Fraction add(const Fraction &other) const {
-        int new_num = num * other.denom + other.num * denom;
-        int new_denom = denom * other.denom;
-        return Fraction(new_num, new_denom);
-    }
-
-    Fraction subtract(const Fraction &other) const {
-        int new_num = num * other.denom - other.num * denom;
-        int new_denom = denom * other.denom;
-        return Fraction(new_num, new_denom);
-    }
-
-    Fraction multiply(const Fraction &other) const {
-        int new_num = num * other.num;
-        int new_denom = denom * other.denom;
-        return Fraction(new_num, new_denom);
-    }
-
-    Fraction divide(const Fraction &other) const {
-        if (other.num == 0) {
-            cout << "Помилка: Ділити на нуль не можна" << endl;
-            return *this;
+            return Fraction(num * other.denom + other.num * denom, denom * other.denom);
         }
-        int new_num = num * other.denom;
-        int new_denom = denom * other.num;
-        return Fraction(new_num, new_denom);
-    }
+
+        Fraction subtract(const Fraction &other) const {
+            return Fraction(num * other.denom - other.num * denom, denom * other.denom);
+        }
+
+        Fraction multiply(const Fraction &other) const {
+            return Fraction(num * other.num, denom * other.denom);
+        }
+
+        Fraction divide(const Fraction &other) const {
+            if (other.num == 0)
+            {
+                cout << "Помилка: Ділити на нуль не можна" << endl;
+                return *this;
+            }
+            return Fraction(num * other.denom, denom * other.num);
+        }
 };
 
 int main()
