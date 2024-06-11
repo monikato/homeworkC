@@ -1,104 +1,75 @@
+
 #include <iostream>
 using namespace std;
 
-//Тема: введение в объектно-ориентированное программирование. Знакомство с классами.
-// Задание 1
-// Реализуйте класс Дробь. Необходимо хранить числитель и знаменатель в качестве полей класса. Реализуйте методы для ввода данных , для выполнения арифметических операций (сложение, вычитание, умножение, деление, и т.д.) и для вывода данных.
+// 1. Написать функцию, которая получает указатель на массив и его размер, и возвращает сумму и произведение его элементов в двух параметрах-указателях.
 
-class Fraction {
-private:
-    int num;
-    int denom;
 
-public:
-    Fraction(int n = 0, int d = 1) : num(n), denom(d) {
-        if (denom == 0)
+//void Rezult (int arr[], int size, int* sum, int* prod)
+//{
+//    for (int i=0; i <size; i++)
+//    {
+//        (*sum) += arr[i];
+//        (*prod) *= arr[i];
+//    }
+//}
+//
+//int main()
+//{
+//    int arr[5] {-1, 4, 7, 4, -2};
+//    for (int i = 0; i < 5; i++)
+//    {
+//        cout<< *(arr+i)<< "\t";
+//    }
+//    cout << endl;
+//    
+//    int sum = 0, prod = 1;
+//    
+//    Rezult (arr, 5, &sum, &prod);
+//    
+//    cout << "Сума = " << sum << endl;
+//    cout << "Добуток = " << prod << endl;
+//}
+
+
+// 2.    Написать функцию, которая получает указатель на массив и его размер, и возвращает количество отрицательных, положительных и нулевых элементов массива.
+
+void Rezult (int arr[], int size, int* negNumber, int* posNumber, int* zeroNumber)
+{
+    for (int i=0; i <size; i++)
+    {
+        if (arr[i] < 0)
         {
-            cout << "Знаменник не може мати нульове значення" << endl;
-            denom = 1;
+            (*negNumber)++;
         }
-    }
-
-    void input() {
-        cout << "Введіть чисельник: ";
-        cin >> num;
-        cout << "Введіть знаменник: ";
-        cin >> denom;
-        if (denom == 0)
+        else if (arr[i] > 0)
         {
-            cout << "Знаменник не може мати нульове значення" << endl;
-            denom = 1;
-        }
-    }
-
-    void output() const {
-        if (denom == 1)
-        {
-            cout << num;
-        }
-        else if (num == 0)
-        {
-            cout << 0;
+            (*posNumber)++;
         }
         else
         {
-            cout << num << "/" << denom;
+            (*zeroNumber)++;
         }
     }
-
-    Fraction add(const Fraction &other) const {
-            return Fraction(num * other.denom + other.num * denom, denom * other.denom);
-        }
-
-        Fraction subtract(const Fraction &other) const {
-            return Fraction(num * other.denom - other.num * denom, denom * other.denom);
-        }
-
-        Fraction multiply(const Fraction &other) const {
-            return Fraction(num * other.num, denom * other.denom);
-        }
-
-        Fraction divide(const Fraction &other) const {
-            if (other.num == 0)
-            {
-                cout << "Помилка: Ділити на нуль не можна" << endl;
-                return *this;
-            }
-            return Fraction(num * other.denom, denom * other.num);
-        }
-};
+}
 
 int main()
 {
-    Fraction f1, f2;
-
-    cout << "Перший дроб->\n";
-    f1.input();
-
-    cout << "Другий дроб->\n";
-    f2.input();
-
-    Fraction sum = f1.add(f2);
-    Fraction diff = f1.subtract(f2);
-    Fraction prod = f1.multiply(f2);
-    Fraction quot = f1.divide(f2);
-
-    cout << "Сума: ";
-    sum.output();
+    int arr[] {-1, 4, 7, 0, 4, -2};
+    for (int i = 0; i < 6; i++)
+    {
+        cout<< *(arr+i)<< "\t";
+    }
     cout << endl;
-
-    cout << "Різниця: ";
-    diff.output();
-    cout << endl;
-
-    cout << "Добуток: ";
-    prod.output();
-    cout << endl;
-
-    cout << "Частка: ";
-    quot.output();
-    cout << endl;
-
-    return 0;
+    
+    int negNumber = 0, posNumber = 0, zeroNumber = 0;
+    
+    Rezult(arr, 6, &negNumber, &posNumber, &zeroNumber);
+    
+    cout << "Кількість мінусових елементів = " << negNumber << endl;
+    cout << "Кількість плюсових елементів = " << posNumber << endl;
+    cout << "Кількість нульових елементів = " << zeroNumber << endl;
 }
 
+
+// Написать функцию, которая получает указатель на двумерный массив и его размер, и возвращает среднее арифметическое элементов массива, а также количество чётных и нечётных элементов.
