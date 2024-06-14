@@ -1,80 +1,145 @@
-
 #include <iostream>
+#include <cstdlib>
 using namespace std;
 
+// Написать следующие функции для работы с динамическим массивом:
+//функция распределения динамической памяти +
+//функция инициализации динамического массива+
+//функция печати динамического массива+
+//функцию удаления динамического массива+
+//функцию добавления элемента в конец массива+
+//функцию добавления элемента на начало массива
+//функцию вставки элемента по указанному индексу
+//функцию удаления элемента по указанному индексу
 
-// 1. Написать функцию, которая получает указатель на массив и его размер, и возвращает сумму и произведение его элементов в двух параметрах-указателях.
-
-
-//void Rezult (int arr[], int size, int* sum, int* prod)
+//void Memory(int** ptr, int size)
 //{
-//    for (int i=0; i <size; i++)
+//    *ptr = new int[size];
+//}
+//
+//void Init(int** ptr, int size)
+//{
+//    for (int i = 0; i < size; i++)
 //    {
-//        (*sum) += arr[i];
-//        (*prod) *= arr[i];
+//        (*ptr)[i] = rand() % 20;
 //    }
+//}
+//
+//void Print (int** ptr, int size)
+//{
+//    for (int i = 0; i < size; i++)
+//    {
+//        cout << (*ptr)[i] << "\t";
+//    }
+//}
+//
+//void Delete (int** ptr)
+//{
+//    delete[]*ptr;
+//    *ptr = nullptr;
+//}
+//
+//void AddElementEnd (int** ptr, int&size, int a)
+//{
+//    int* temp = new int [size+1];
+//    for (int i = 0; i < size; i++)
+//    {
+//        temp[i] = (*ptr)[i];
+//    }
+//    temp[size] = a;
+//    delete[]*ptr;
+//    *ptr = temp;
+//    size++;
+//}
+//
+//void AddElementStart (int** ptr, int&size, int b)
+//{
+//    int* temp = new int [size+1];
+//    temp[0] = b;
+//    for (int i = 0; i < size; i++)
+//    {
+//        temp[i+1] = (*ptr)[i];
+//    }
+//    delete[]*ptr;
+//    *ptr = temp;
+//    size++;
+//}
+//
+//void AddElementIndex(int** ptr, int& size, int x, int index)
+//{
+//    if (index < 0 || index > size)
+//    {
+//        cout << "Invalid index" << endl;
+//        return;
+//    }
+//    int* temp = new int[size + 1];
+//    for (int i = 0; i < index; i++)
+//    {
+//        temp[i] = (*ptr)[i];
+//    }
+//    temp[index] = x;
+//    for (int i = index; i < size; i++)
+//    {
+//        temp[i + 1] = (*ptr)[i];
+//    }
+//    delete[] *ptr;
+//    *ptr = temp;
+//    size++;
+//}
+//
+//void DeleteElementIndex(int** ptr, int& size, int index)
+//{
+//    if (index < 0 || index >= size)
+//    {
+//        cout << "Invalid index" << endl;
+//        return;
+//    }
+//    int* temp = new int[size - 1];
+//    for (int i = 0; i < index; i++)
+//    {
+//        temp[i] = (*ptr)[i];
+//    }
+//    for (int i = index + 1; i < size; i++)
+//    {
+//        temp[i - 1] = (*ptr)[i];
+//    }
+//    delete[] *ptr;
+//    *ptr = temp;
+//    size--;
 //}
 //
 //int main()
 //{
-//    int arr[5] {-1, 4, 7, 4, -2};
-//    for (int i = 0; i < 5; i++)
-//    {
-//        cout<< *(arr+i)<< "\t";
-//    }
+//    int* arr = nullptr;
+//    int size = 5;
+//    
+//    Memory(&arr, size);
+//    Init(&arr, size);
+//    cout << "Масив: ";
+//    Print(&arr, size);
 //    cout << endl;
 //    
-//    int sum = 0, prod = 1;
-//    
-//    Rezult (arr, 5, &sum, &prod);
-//    
-//    cout << "Сума = " << sum << endl;
-//    cout << "Добуток = " << prod << endl;
-//}
-
-
-
-
-
-
-
-// 2.    Написать функцию, которая получает указатель на массив и его размер, и возвращает количество отрицательных, положительных и нулевых элементов массива.
-
-//void Rezult (int arr[], int size, int* negNumber, int* posNumber, int* zeroNumber)
-//{
-//    for (int i=0; i <size; i++)
-//    {
-//        if (arr[i] < 0)
-//        {
-//            (*negNumber)++;
-//        }
-//        else if (arr[i] > 0)
-//        {
-//            (*posNumber)++;
-//        }
-//        else
-//        {
-//            (*zeroNumber)++;
-//        }
-//    }
-//}
-//
-//int main()
-//{
-//    int arr[] {-1, 4, 7, 0, 4, -2};
-//    for (int i = 0; i < 6; i++)
-//    {
-//        cout<< *(arr+i)<< "\t";
-//    }
+//    AddElementEnd(&arr, size, 100);
+//    cout << "Масив із доданим елементом укінці: ";
+//    Print(&arr, size);
 //    cout << endl;
 //    
-//    int negNumber = 0, posNumber = 0, zeroNumber = 0;
+//    AddElementStart(&arr, size, 10);
+//    cout << "Масив із доданим елементом на початку: ";
+//    Print(&arr, size);
+//    cout << endl;
 //    
-//    Rezult(arr, 6, &negNumber, &posNumber, &zeroNumber);
+//    AddElementIndex(&arr, size, 50, 2);
+//    cout << "Масив із доданим елементом по індексу 2: ";
+//    Print(&arr, size);
+//    cout << endl;
 //    
-//    cout << "Кількість мінусових елементів = " << negNumber << endl;
-//    cout << "Кількість плюсових елементів = " << posNumber << endl;
-//    cout << "Кількість нульових елементів = " << zeroNumber << endl;
+//    DeleteElementIndex(&arr, size, 3);
+//    cout << "Масив із видаленим елементом по індексу 3: ";
+//    Print(&arr, size);
+//    cout << endl;
+//    
+//    Delete(&arr);
 //}
 
 
@@ -82,125 +147,411 @@ using namespace std;
 
 
 
-// 3. Написать функцию, которая получает указатель на двумерный массив и его размер, и возвращает среднее арифметическое элементов массива, а также количество чётных и нечётных элементов.
 
 
-//void Rezult(int arr[3][5], int rows, int cols, double* average, int* evenNumber, int* oddNumber)
-//{
-//    int sum = 0;
-//    int total = rows * cols;
-//    *evenNumber = 0;
-//    *oddNumber = 0;
+
+// Написать функцию, которая получает указатель на динамический массив и его размер. Функция должна удалить из массива все отрицательные числа и вернуть указатель на новый динамический массив.
 //
-//    for (int i = 0; i < rows; i++)
+//
+//void Memory(int** ptr, int size)
+//{
+//    *ptr = new int[size];
+//}
+//
+//void Init(int** ptr, int size)
+//{
+//    for (int i = 0; i < size; i++)
 //    {
-//        for (int j = 0; j < cols; j++)
+//        (*ptr)[i] = rand() % 20 - 10;
+//    }
+//}
+//
+//void Print(int** ptr, int size)
+//{
+//    for (int i = 0; i < size; i++)
+//    {
+//        cout << (*ptr)[i] << "\t";
+//    }
+//    cout << endl;
+//}
+//
+//void Delete(int** ptr)
+//{
+//    delete[] *ptr;
+//    *ptr = nullptr;
+//}
+//
+//void DeleteNegElements(int** ptr, int size, int& newSize)
+//{
+//    newSize = 0;
+//    for (int i = 0; i < size; i++)
+//    {
+//        if ((*ptr)[i] >= 0)
 //        {
-//            sum += arr[i][j];
-//            if (arr[i][j] % 2 == 0)
-//            {
-//                (*evenNumber)++;
-//            }
-//            else
-//            {
-//                (*oddNumber)++;
-//            }
+//            newSize++;
 //        }
 //    }
-//    *average = sum / total;
+//
+//    int* newArr = new int[newSize];
+//    int j = 0;
+//    for (int i = 0; i < size; i++)
+//    {
+//        if ((*ptr)[i] >= 0)
+//        {
+//            newArr[j++] = (*ptr)[i];
+//        }
+//    }
+//    delete[] *ptr;
+//    *ptr = newArr;
 //}
 //
 //int main()
 //{
-//    const int rows = 3;
-//    const int cols = 5;
+//    int size = 10;
+//    int* arr = nullptr;
 //
-//    int arr[rows][cols];
+//    Memory(&arr, size);
+//    Init(&arr, size);
+//    
+//    cout << "Початковий масив: ";
+//    Print(&arr, size);
+//    cout << endl;
 //
-//    int counter = 1;
-//    for (int i = 0; i < rows; i++)
-//    {
-//        for (int j = 0; j < cols; j++)
-//        {
-//            arr[i][j] = counter++;
-//        }
-//    }
-//
-//    cout << "Масив:" << endl;
-//    for (int i = 0; i < rows; i++)
-//    {
-//        for (int j = 0; j < cols; j++)
-//        {
-//            cout << arr[i][j] << "\t";
-//        }
-//        cout << endl;
-//    }
-//
-//    double average;
-//    int evenNumber, oddNumber;
-//
-//    Rezult(arr, rows, cols, &average, &evenNumber, &oddNumber);
-//
-//    cout << "Середнє арифметичне = " << average << endl;
-//    cout << "Кількість парних елементів = " << evenNumber << endl;
-//    cout << "Кількість непарних елементів = " << oddNumber << endl;
-//
+//    int newSize;
+//    DeleteNegElements(&arr, size, newSize);
+//    
+//    cout << "Масив без мінусових елементів: ";
+//    Print(&arr, newSize);
+//    cout << endl;
+//    
+//    Delete(&arr);
 //}
 
 
 
 
 
-// 4.    Написать функцию, принимающую в качестве аргумента, указатели на два массива (А и В) и размеры массивов. Функция проверяет, является ли массив В подмножеством массива А и возвращает указатель на начало найденного фрагмента, если элемента нет, воз-вращает 0.
 
 
-void Rezult(int* A, int sizeA, int* B, int sizeB, int** rez)
+
+
+// Даны два массива: А[M] и B[N] (M и  N вводятся с клавиатуры). Необходимо создать третий массив минимально возможного размера, в котором нужно собрать элементы обоих массивов.
+
+
+//void Memory(int** ptr, int size)
+//{
+//    *ptr = new int[size];
+//}
+//
+//void Init(int** ptr, int size)
+//{
+//    for (int i = 0; i < size; i++)
+//    {
+//        (*ptr)[i] = rand() % 20;
+//    }
+//}
+//
+//void Print(int* ptr, int size)
+//{
+//    for (int i = 0; i < size; i++)
+//    {
+//        cout << ptr[i] << "\t";
+//    }
+//    cout << endl;
+//}
+//
+//void Delete(int** ptr)
+//{
+//    delete[] *ptr;
+//    *ptr = nullptr;
+//}
+//
+//void ConnectArr(int* A, int M, int* B, int N, int** C, int& sizeC)
+//{
+//    sizeC = M + N;
+//    *C = new int[sizeC];
+//    for (int i = 0; i < M; i++)
+//    {
+//        (*C)[i] = A[i];
+//    }
+//    for (int i = 0; i < N; i++)
+//    {
+//        (*C)[M + i] = B[i];
+//    }
+//}
+//
+//int main()
+//{
+//    srand(time(NULL));
+//
+//    int M, N;
+//    cout << "Введіть розмір масиву A: ";
+//    cin >> M;
+//    cout << "Введіть розмір масиву B: ";
+//    cin >> N;
+//
+//    int* A = nullptr;
+//    int* B = nullptr;
+//    int* C = nullptr;
+//    int sizeC;
+//
+//    Memory(&A, M);
+//    Memory(&B, N);
+//
+//    Init(&A, M);
+//    Init(&B, N);
+//
+//    cout << "Масив A: ";
+//    Print(A, M);
+//    cout << endl;
+//    
+//    cout << "Масив B: ";
+//    Print(B, N);
+//    cout << endl;
+//
+//    ConnectArr(A, M, B, N, &C, sizeC);
+//    cout << "Об'єднаний масив C: ";
+//    Print(C, sizeC);
+//    cout << endl;
+//
+//    Delete(&A);
+//    Delete(&B);
+//    Delete(&C);
+//}
+
+
+
+
+
+
+
+
+
+// Даны два массива: А[M] и B[N] (M и  N вводятся с клавиатуры). Необходимо создать третий массив минимально возможного размера, в котором нужно собрать общие элементы двух массивов.
+
+
+//void Memory(int** ptr, int size)
+//{
+//    *ptr = new int[size];
+//}
+//
+//void Init(int** ptr, int size)
+//{
+//    for (int i = 0; i < size; i++)
+//    {
+//        (*ptr)[i] = rand() % 20;
+//    }
+//}
+//
+//void Print(int* ptr, int size)
+//{
+//    for (int i = 0; i < size; i++)
+//    {
+//        cout << ptr[i] << "\t";
+//    }
+//    cout << endl;
+//}
+//
+//void Delete(int** ptr)
+//{
+//    delete[] *ptr;
+//    *ptr = nullptr;
+//}
+//
+//void CommonElements(int* A, int M, int* B, int N, int** C, int& sizeC)
+//{
+//    int* temp = new int[M < N ? M : N];
+//    sizeC = 0;
+//    
+//    for (int i = 0; i < M; i++)
+//    {
+//        for (int j = 0; j < N; j++)
+//        {
+//            if (A[i] == B[j])
+//            {
+//                bool isInArr = false;
+//                for (int k = 0; k < sizeC; k++)
+//                {
+//                    if (temp[k] == A[i])
+//                    {
+//                        isInArr = true;
+//                        break;
+//                    }
+//                }
+//                if (!isInArr)
+//                {
+//                    temp[sizeC++] = A[i];
+//                }
+//                break;
+//            }
+//        }
+//    }
+//
+//    *C = new int[sizeC];
+//    for (int i = 0; i < sizeC; i++)
+//    {
+//        (*C)[i] = temp[i];
+//    }
+//    delete[] temp;
+//}
+//
+//int main()
+//{
+//    srand(time(NULL));
+//
+//    int M, N;
+//    cout << "Введіть розмір масиву A: ";
+//    cin >> M;
+//    cout << "Введіть розмір масиву B: ";
+//    cin >> N;
+//
+//    int* A = nullptr;
+//    int* B = nullptr;
+//    int* C = nullptr;
+//    int sizeC;
+//
+//    Memory(&A, M);
+//    Memory(&B, N);
+//
+//    Init(&A, M);
+//    Init(&B, N);
+//
+//    cout << "Масив A: ";
+//    Print(A, M);
+//    cout << endl;
+//    
+//    cout << "Масив B: ";
+//    Print(B, N);
+//    cout << endl;
+//
+//    CommonElements(A, M, B, N, &C, sizeC);
+//    if (sizeC > 0)
+//    {
+//        cout << "Спільні елементи (масив C): ";
+//        Print(C, sizeC);
+//    }
+//    else
+//    {
+//        cout << "Спільних елементів немає." << endl;
+//    }
+//    
+//    Delete(&A);
+//    Delete(&B);
+//    Delete(&C);
+//}
+
+
+
+
+
+
+
+
+
+
+
+// Даны два массива: А[M] и B[N] (M и  N вводятся с клавиатуры). Необходимо создать третий массив минимально возможного размера, в котором нужно собрать элементы массива A, которые не включаются в массив B.
+
+void Memory(int** ptr, int size)
 {
-    *rez = nullptr;
-    
-    if (sizeB > sizeA)
-    {
-        return;
-    }
+    *ptr = new int[size];
+}
 
-    for (int i = 0; i <= sizeA - sizeB; i++)
+void Init(int** ptr, int size)
+{
+    for (int i = 0; i < size; i++)
     {
-        bool found = true;
-        for (int j = 0; j < sizeB; j++)
+        (*ptr)[i] = rand() % 20;
+    }
+}
+
+void Print(int* ptr, int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        cout << ptr[i] << "\t";
+    }
+    cout << endl;
+}
+
+void Delete(int** ptr)
+{
+    delete[] *ptr;
+    *ptr = nullptr;
+}
+
+void ExclusiveElements(int* A, int M, int* B, int N, int** C, int& sizeC)
+{
+    int* temp = new int[M];
+    sizeC = 0;
+
+    for (int i = 0; i < M; i++)
+    {
+        bool found = false;
+        for (int j = 0; j < N; j++)
         {
-            if (A[i + j] != B[j])
+            if (A[i] == B[j])
             {
-                found = false;
+                found = true;
                 break;
             }
         }
-        if (found)
+        if (!found)
         {
-            *rez = &A[i];
-            return;
+            temp[sizeC++] = A[i];
         }
     }
+
+    *C = new int[sizeC];
+    for (int i = 0; i < sizeC; i++)
+    {
+        (*C)[i] = temp[i];
+    }
+    delete[] temp;
 }
 
 int main()
 {
-    int A[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-    int B[] = {4, 5, 6};
+    srand(time(NULL));
 
-    int sizeA = 9;
-    int sizeB = 3;
+    int M, N;
+    cout << "Введіть розмір масиву A: ";
+    cin >> M;
+    cout << "Введіть розмір масиву B: ";
+    cin >> N;
 
-    int* rez = nullptr;
+    int* A = nullptr;
+    int* B = nullptr;
+    int* C = nullptr;
+    int sizeC;
 
-    Rezult(A, sizeA, B, sizeB, &rez);
+    Memory(&A, M);
+    Memory(&B, N);
+
+    Init(&A, M);
+    Init(&B, N);
+
+    cout << "Масив A: ";
+    Print(A, M);
+    cout << endl;
     
-    if (rez != nullptr)
+    cout << "Масив B: ";
+    Print(B, N);
+    cout << endl;
+
+    ExclusiveElements(A, M, B, N, &C, sizeC);
+    if (sizeC > 0)
     {
-        cout << "Масив є підмножиною масиву A, починаючи з елемента: " << (rez - A) << endl;
+        cout << "Елементи масиву A, яких немає в масиві B (масив C): ";
+        Print(C, sizeC);
     }
     else
     {
-        cout << "Масив не є підмножиною масиву A." << endl;
+        cout << "Елементів з А, які не включені в В, немає." << endl;
     }
 
+    Delete(&A);
+    Delete(&B);
+    Delete(&C);
 }
+
