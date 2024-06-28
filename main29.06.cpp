@@ -223,7 +223,7 @@ int main()
     lst.Search('D', &position);
     if (position != -1)
        {
-           cout << "Position of 'C' is: " << position << endl;
+           cout << "Position is: " << position << endl;
        }
        else
        {
