@@ -4,6 +4,8 @@
 
 using namespace std;
 
+
+//
 void filterText(string &text, bool Latin, bool Cyrillic, bool Punctuation, bool Digits)
 {
     for (size_t i = 0; i < text.length(); i++)
@@ -26,6 +28,7 @@ void chooseFilters(bool &Latin, bool &Cyrillic, bool &Punctuation, bool &Digits,
     cout << "2. Символи кирилиці\n";
     cout << "3. Символи пунктуації\n";
     cout << "4. Цифри\n";
+    cout << "0. - для завершення вибору фільтрів\n";
     cout << "Уведіть ваш вибір: ";
     cin >> choice;
     cin.ignore();
@@ -52,13 +55,17 @@ void chooseFilters(bool &Latin, bool &Cyrillic, bool &Punctuation, bool &Digits,
             filter = true;
             break;
             
+        case '0':
+            return;
+            
         default:
             cout << "Помилка\n";
             break;
         }
+    
+    chooseFilters(Latin, Cyrillic, Punctuation, Digits, filter);
 }
 
-// Основная функция
 int main()
 {
     string text;
@@ -77,6 +84,10 @@ int main()
     {
         filterText(text, Latin, Cyrillic, Punctuation, Digits);
         cout << "Відфільтрований текст: " << text << endl;
+    }
+    else
+    {
+        cout << "Фільтр не вибрано";  <#statements#>
     }
     
     return 0;
